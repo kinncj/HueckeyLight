@@ -2,6 +2,11 @@
 
 Use at your own risk.
 
+#### Requirements
+ - NodeJS 5
+ - mplayer
+ - Hue (may change in the future, keep reading the README)
+
 #### Installation
 
 
@@ -32,7 +37,7 @@ There's a known issue when you run it for the first time:
  - Make it even more configurable...
    - Add a `silent` flag, so we don't play the music (easy one, feel free to send a PR)
    - Decouple so it can work for those who have Hue or not (eg: play sound only).
-     - Add middlewares, so when score the app can even send emails if that's your desire.
+     - Add middlewares... eg: When score, the app can sends an email (or whatever you desire, like: fetch an API to poke your cat).
 
 
 #### LICENSE
