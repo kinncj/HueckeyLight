@@ -22,37 +22,38 @@ class Goal
     tick()
     {
         try {
-        jsonp('http://live.nhle.com/GameData/RegularSeasonScoreboardv3.jsonp', function(err, data){
-            if (!data) {
-                console.log('JSON data not available:', err, data);
-                return;
-            }
-
-            let games = data.games || [];
-            let score = false;
-            games.forEach(function(game){
-                if (game.atn === this.team) {
-                    score = game.ats;
+            jsonp('http://live.nhle.com/GameData/RegularSeasonScoreboardv3.jsonp', function(err, data){
+                if (!data) {
+                    console.log('JSON data not available:', err, data);
+                    setTimeout(() => this.tick(), 10000);
+                    return;
                 }
 
-                if (game.htn === this.team) {
-                    score = game.hts
-                }
-            }.bind(this));
-
-            if (score) {
-                if (this.score != score) {
-                    if (!this.iterating) {
-                        moduleManager.execute(score);
-                        this.play();
+                let games = data.games || [];
+                let score = false;
+                games.forEach(function(game){
+                    if (game.atn === this.team) {
+                        score = game.ats;
                     }
+
+                    if (game.htn === this.team) {
+                        score = game.hts
+                    }
+                }.bind(this));
+
+                if (score) {
+                    if (this.score != score) {
+                        if (!this.iterating) {
+                            moduleManager.execute(score);
+                            this.play();
+                        }
+                    }
+
+                    this.score = score;
                 }
 
-                this.score = score;
-            }
-
-            setTimeout(() => this.tick(), 2000);
-        }.bind(this));
+                setTimeout(() => this.tick(), 10000);
+            }.bind(this));
         } catch (error) {
             console.log('NHL API ERROR:', error);
         }
