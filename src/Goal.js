@@ -25,6 +25,11 @@ class Goal
     {
         try {
         jsonp('http://live.nhle.com/GameData/RegularSeasonScoreboardv3.jsonp', function(err, data){
+            if (!data) {
+                console.log('JSON data not available:', err, data);
+                return;
+            }
+
             let games = data.games || [];
             let score = false;
             games.forEach(function(game){
