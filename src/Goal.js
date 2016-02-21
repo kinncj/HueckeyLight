@@ -64,7 +64,8 @@ class Goal
         }
         
         this.iterating = true;
-        
+
+        let on     = true;
         let bright = 100;
         switch (this.timer) {
            case 0:
@@ -87,11 +88,12 @@ class Goal
                break
            case 6:
                bright = 0;
+               on     = false;
                break;
         }
 
         let state = {
-            on:  true,
+            on:  on,
             bri: bright || 100,
             xy: config.color
         };
