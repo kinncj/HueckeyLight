@@ -100,7 +100,7 @@ class Goal
 
         this.light.setState(state);
         this.timer++;
-        setTimeout(this.play.bind(this), 200);
+        setTimeout(this.play.bind(this), 500);
     }
 }
 
