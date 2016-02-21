@@ -1,12 +1,10 @@
 'use strict';
 
-let jsonp  = require('jsonp-client');
-let config = require('./config.js')('./config.json');
-let player = require('play-sound')({player: 'mplayer'});
-let path   = require('path');
+let jsonp         = require('jsonp-client');
+let config        = require('./config.js')('./config.json');
+let moduleManager = require('./ModuleManager.js');
 
 const MAX_TIMER  = 14;
-const AUDIO_FILE = 'horn.mp3';
 
 class Goal
 {
@@ -45,7 +43,7 @@ class Goal
             if (score) {
                 if (this.score != score) {
                     if (!this.iterating) {
-                        player.play(AUDIO_FILE, (error) => { console.log('audioError', err); });
+                        moduleManager.execute(score);
                         this.play();
                     }
                 }
@@ -96,7 +94,7 @@ class Goal
            case 5:
            case 13:
                bright = 100;
-               break
+               break;
            case 6:
            case 14:
                bright = 0;

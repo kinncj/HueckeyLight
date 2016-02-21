@@ -1,0 +1,11 @@
+{
+  "example": {
+    "module": "example.js"
+  },
+  "mplayer": {
+    "module": "mplayer.js",
+    "config": {
+      "silent": false
+    }
+  }
+}
