@@ -13,7 +13,7 @@ class Mplayer extends Module
             return;
         }
 
-        player.play(AUDIO_FILE, (error) => { console.log('audioError', err); });
+        player.play(AUDIO_FILE, (error) => { console.log('audioError', error); });
     }
 }
 
