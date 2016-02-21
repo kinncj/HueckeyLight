@@ -5,7 +5,7 @@ let config = require('./config.js')('./config.json');
 let player = require('play-sound')({player: 'mplayer'});
 let path   = require('path');
 
-const MAX_TIMER  = 6;
+const MAX_TIMER  = 14;
 const AUDIO_FILE = 'horn.mp3';
 
 class Goal
@@ -69,24 +69,31 @@ class Goal
         let bright = 100;
         switch (this.timer) {
            case 0:
-               bright = 100;
+           case 7:
+               bright = 0;
                break;
            case 1:
-               bright = 50;
+           case 8:
+               bright = 100;
                break;
            case 2:
-               bright = 25;
+           case 9:
+               bright = 0;
                break;
            case 3:
-               bright = 2;
+           case 10:
+               bright = 100;
                break;
            case 4:
-               bright = 25;
+           case 11:
+               bright = 0;
                break;
            case 5:
-               bright = 50;
+           case 13:
+               bright = 100;
                break
            case 6:
+           case 14:
                bright = 0;
                on     = false;
                break;
@@ -94,12 +101,12 @@ class Goal
 
         let state = {
             on:  on,
-            bri: bright || 100,
+            bri: bright,
             xy: config.color
         };
 
-        this.light.setState(state);
         this.timer++;
+        this.light.setState(state);
         setTimeout(this.play.bind(this), 500);
     }
 }
