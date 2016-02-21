@@ -16,7 +16,7 @@ class Goal
         this.timer     = 0;
         this.iterating = false;
 
-        setTimeout(() => this.tick(), 3000);
+        setTimeout(() => this.tick(), 10000);
     }
 
     tick()
