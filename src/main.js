@@ -22,7 +22,7 @@ let oldConnection = function(hue) {
     hue.bridge   = hueConfig.bridge;
     hue.username = hueConfig.username;
 
-    setTimeout(() => new Goal(hue.light(config.bulbs[0], config.city)), 1000);
+    setTimeout(() => new Goal(hue.light(config.bulbs[0]), config.city), 1000);
 }
 
 let newConnection = function(hue) {

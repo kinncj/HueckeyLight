@@ -18,13 +18,14 @@ class Goal
         this.timer     = 0;
         this.iterating = false;
 
-        setTimeout(() => this.tick(), 2000);
+        setTimeout(() => this.tick(), 3000);
     }
 
     tick()
     {
+        try {
         jsonp('http://live.nhle.com/GameData/RegularSeasonScoreboardv3.jsonp', function(err, data){
-            let games = data.games;
+            let games = data.games || [];
             let score = false;
             games.forEach(function(game){
                 if (game.atn === this.team) {
@@ -49,6 +50,9 @@ class Goal
 
             setTimeout(() => this.tick(), 2000);
         }.bind(this));
+        } catch (error) {
+            console.log('NHL API ERROR:', error);
+        }
     }
 
     play()
